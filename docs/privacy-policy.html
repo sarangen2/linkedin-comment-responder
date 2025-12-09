@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - LinkedIn Comment Responder</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 40px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+        
+        h1 {
+            color: #0077b5;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            border-bottom: 3px solid #0077b5;
+            padding-bottom: 10px;
+        }
+        
+        h2 {
+            color: #0077b5;
+            font-size: 1.8em;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        
+        h3 {
+            color: #333;
+            font-size: 1.3em;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        
+        p {
+            margin-bottom: 15px;
+        }
+        
+        ul, ol {
+            margin-left: 30px;
+            margin-bottom: 15px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+        
+        .last-updated {
+            color: #666;
+            font-style: italic;
+            margin-bottom: 30px;
+        }
+        
+        .highlight-box {
+            background-color: #e7f3ff;
+            border-left: 4px solid #0077b5;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        
+        .warning-box {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        
+        .quick-reference {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            padding: 20px;
+            margin: 30px 0;
+        }
+        
+        .quick-reference h3 {
+            margin-top: 0;
+        }
+        
+        .quick-reference ul {
+            margin-left: 20px;
+        }
+        
+        a {
+            color: #0077b5;
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        .contact-info {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 5px;
+            margin-top: 30px;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #dee2e6;
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+            
+            h2 {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Privacy Policy</h1>
+        <p class="last-updated"><strong>Last Updated:</strong> December 9, 2025</p>
+        
+        <h2>Introduction</h2>
+        <p>This Privacy Policy describes how LinkedIn Comment Responder ("I", "my", or "the Application") collects, uses, and protects your information when you use this personal developer application. This is a personal project created by an individual developer for automating LinkedIn comment responses.</p>
+        
+        <h2>Information We Collect</h2>
+        
+        <h3>1. LinkedIn Account Information</h3>
+        <p>When you authorize our application through LinkedIn OAuth, we collect:</p>
+        <ul>
+            <li><strong>Profile Information:</strong> Your LinkedIn profile ID, name, and email address</li>
+            <li><strong>Post Data:</strong> Content of your LinkedIn posts that you choose to monitor</li>
+            <li><strong>Comment Data:</strong> Comments made on your monitored posts, including commenter names and comment text</li>
+            <li><strong>Interaction Data:</strong> Records of responses generated and posted by our application</li>
+        </ul>
+        
+        <h3>2. API Credentials</h3>
+        <p>We require you to provide:</p>
+        <ul>
+            <li>LinkedIn OAuth Client ID and Client Secret</li>
+            <li>LinkedIn Access Token and Refresh Token</li>
+            <li>OpenAI API Key (or other LLM provider credentials)</li>
+        </ul>
+        
+        <h3>3. Application Usage Data</h3>
+        <p>We collect:</p>
+        <ul>
+            <li>Configuration settings (polling intervals, tone preferences, etc.)</li>
+            <li>Interaction history (comments processed, responses generated)</li>
+            <li>Error logs and system diagnostics</li>
+            <li>API usage metrics</li>
+        </ul>
+        
+        <h2>How We Use Your Information</h2>
+        
+        <h3>Primary Uses</h3>
+        <ol>
+            <li><strong>Comment Monitoring:</strong> To fetch and monitor comments on your LinkedIn posts</li>
+            <li><strong>Response Generation:</strong> To generate contextually appropriate responses using AI</li>
+            <li><strong>Response Posting:</strong> To post approved responses back to LinkedIn on your behalf</li>
+            <li><strong>History Tracking:</strong> To maintain a record of all interactions for your review</li>
+        </ol>
+        
+        <h3>Secondary Uses</h3>
+        <ol>
+            <li><strong>System Improvement:</strong> To improve response quality and system performance</li>
+            <li><strong>Error Handling:</strong> To diagnose and fix technical issues</li>
+            <li><strong>Security:</strong> To detect and prevent unauthorized access or abuse</li>
+        </ol>
+        
+        <h2>Data Storage and Security</h2>
+        
+        <div class="highlight-box">
+            <h3>Storage Location</h3>
+            <ul>
+                <li><strong>Local Storage Only:</strong> All data is stored locally on your own server or computer</li>
+                <li><strong>File-Based Storage:</strong> Interaction history stored in JSON files in the configured storage directory</li>
+                <li><strong>No Cloud Storage:</strong> I do not have access to your data. Everything stays on your machine.</li>
+                <li><strong>No Central Database:</strong> There is no central database or server collecting data from users</li>
+            </ul>
+        </div>
+        
+        <h3>Security Measures</h3>
+        <ol>
+            <li><strong>Credential Protection:</strong> API credentials stored as environment variables on your machine, never in code</li>
+            <li><strong>Access Control:</strong> Only you have access to your local data storage</li>
+            <li><strong>Encryption:</strong> You are responsible for encrypting credentials at rest on your system</li>
+            <li><strong>Secure Communication:</strong> All API communications use HTTPS/TLS</li>
+            <li><strong>No Data Collection:</strong> I (the developer) do not collect, access, or store any of your data</li>
+        </ol>
+        
+        <h3>Data Retention</h3>
+        <ul>
+            <li><strong>Interaction History:</strong> Retained on your local machine indefinitely unless you manually delete it</li>
+            <li><strong>Archived Data:</strong> Old interactions archived locally when storage capacity is reached</li>
+            <li><strong>Logs:</strong> Application logs retained on your machine according to your configuration (default: 30 days)</li>
+            <li><strong>Developer Access:</strong> I have no access to your data, logs, or any information processed by the application</li>
+        </ul>
+        
+        <h2>Data Sharing and Third Parties</h2>
+        
+        <h3>Third-Party Services</h3>
+        <p>We interact with the following third-party services:</p>
+        
+        <ol>
+            <li>
+                <strong>LinkedIn API</strong>
+                <ul>
+                    <li>Purpose: Fetch comments and post responses</li>
+                    <li>Data Shared: Your access token, post IDs, comment IDs, response text</li>
+                    <li>Privacy Policy: <a href="https://www.linkedin.com/legal/privacy-policy" target="_blank">LinkedIn Privacy Policy</a></li>
+                    <li>Note: Data is sent directly from your machine to LinkedIn</li>
+                </ul>
+            </li>
+            <li>
+                <strong>OpenAI API</strong> (or other LLM provider)
+                <ul>
+                    <li>Purpose: Generate response text</li>
+                    <li>Data Shared: Post content, comment text, commenter names</li>
+                    <li>Privacy Policy: <a href="https://openai.com/policies/privacy-policy" target="_blank">OpenAI Privacy Policy</a></li>
+                    <li>Note: Data is sent directly from your machine to OpenAI</li>
+                </ul>
+            </li>
+        </ol>
+        
+        <h3>Developer Access</h3>
+        <ul>
+            <li><strong>No Data Collection:</strong> I (the developer) do not collect, access, or receive any of your data</li>
+            <li><strong>No Analytics:</strong> The application does not send usage analytics or telemetry</li>
+            <li><strong>No Tracking:</strong> There is no tracking, monitoring, or data collection by the developer</li>
+            <li><strong>Open Source:</strong> You can review the source code to verify these claims</li>
+        </ul>
+        
+        <div class="warning-box">
+            <p><strong>Important:</strong> I do not sell, rent, or trade your personal information to anyone. I don't have access to your data in the first place. This is a personal developer project, not a commercial service.</p>
+        </div>
+        
+        <h2>Your Rights and Choices</h2>
+        
+        <h3>Access and Control</h3>
+        <p>You have the right to:</p>
+        <ol>
+            <li><strong>Access Your Data:</strong> View all stored interaction history via the API or storage files</li>
+            <li><strong>Export Your Data:</strong> Export interaction history in JSON or CSV format</li>
+            <li><strong>Delete Your Data:</strong> Delete interaction history or specific records at any time</li>
+            <li><strong>Revoke Access:</strong> Revoke the application's LinkedIn API access at any time</li>
+        </ol>
+        
+        <h3>How to Exercise Your Rights</h3>
+        <ul>
+            <li><strong>View History:</strong> Use the API endpoint <code>/api/management/history</code></li>
+            <li><strong>Export History:</strong> Use the API endpoint <code>/api/management/history/export</code></li>
+            <li><strong>Delete Data:</strong> Manually delete files in your storage directory</li>
+            <li><strong>Revoke Access:</strong> Go to <a href="https://www.linkedin.com/mypreferences/d/apps" target="_blank">LinkedIn Apps</a> and remove the application</li>
+        </ul>
+        
+        <h2>LinkedIn API Compliance</h2>
+        
+        <h3>OAuth Permissions</h3>
+        <p>Our application requests the following LinkedIn API scopes:</p>
+        <ul>
+            <li><code>r_liteprofile</code>: Read your basic profile information</li>
+            <li><code>r_emailaddress</code>: Read your email address</li>
+            <li><code>w_member_social</code>: Post comments on your behalf</li>
+            <li><code>rw_organization_admin</code>: Manage organization pages (if applicable)</li>
+        </ul>
+        
+        <h3>Data Usage Compliance</h3>
+        <p>We comply with LinkedIn's API Terms of Use:</p>
+        <ul>
+            <li>We only access data you explicitly authorize</li>
+            <li>We do not store LinkedIn data longer than necessary</li>
+            <li>We do not use LinkedIn data for purposes other than stated</li>
+            <li>We respect LinkedIn's rate limits and usage policies</li>
+        </ul>
+        
+        <h2>OpenAI API Compliance</h2>
+        
+        <h3>Data Processing</h3>
+        <p>When using OpenAI's API:</p>
+        <ul>
+            <li>Post content and comments are sent to OpenAI for response generation</li>
+            <li>OpenAI may use this data according to their <a href="https://openai.com/policies/api-data-usage-policies" target="_blank">API Data Usage Policy</a></li>
+            <li>As of March 1, 2023, OpenAI does not use API data to train their models</li>
+            <li>Data sent to OpenAI is retained for 30 days for abuse monitoring, then deleted</li>
+        </ul>
+        
+        <h2>Children's Privacy</h2>
+        <p>Our application is not intended for use by children under 13 years of age. We do not knowingly collect information from children under 13.</p>
+        
+        <h2>International Data Transfers</h2>
+        <ul>
+            <li><strong>LinkedIn:</strong> Data may be transferred to LinkedIn's servers globally</li>
+            <li><strong>OpenAI:</strong> Data may be transferred to OpenAI's servers (primarily US-based)</li>
+            <li><strong>Your Server:</strong> Your data is stored on your own server/computer</li>
+        </ul>
+        
+        <h2>Changes to This Privacy Policy</h2>
+        <p>We may update this Privacy Policy from time to time. Changes will be:</p>
+        <ul>
+            <li>Posted in this document with an updated "Last Updated" date</li>
+            <li>Announced in release notes</li>
+            <li>Highlighted in the application documentation</li>
+        </ul>
+        
+        <h2>Your Responsibilities</h2>
+        <p>As the application operator, you are responsible for:</p>
+        <ol>
+            <li><strong>Securing Credentials:</strong> Protecting your API keys and access tokens</li>
+            <li><strong>Data Protection:</strong> Implementing appropriate security measures for your server</li>
+            <li><strong>Compliance:</strong> Ensuring your use complies with applicable laws and regulations</li>
+            <li><strong>User Consent:</strong> Obtaining consent from commenters if required by law</li>
+        </ol>
+        
+        <div class="quick-reference">
+            <h2>Quick Reference</h2>
+            
+            <h3>What We Collect</h3>
+            <ul>
+                <li>LinkedIn profile info, posts, and comments</li>
+                <li>API credentials (stored locally)</li>
+                <li>Interaction history</li>
+            </ul>
+            
+            <h3>What I (the Developer) Don't Do</h3>
+            <ul>
+                <li>❌ Collect or access your data</li>
+                <li>❌ Store data in the cloud or on any server</li>
+                <li>❌ Sell your data</li>
+                <li>❌ Use data for marketing</li>
+                <li>❌ Track or monitor your usage</li>
+                <li>❌ Send analytics or telemetry</li>
+            </ul>
+            
+            <h3>Your Control</h3>
+            <ul>
+                <li>✅ All data stored locally</li>
+                <li>✅ Export anytime</li>
+                <li>✅ Delete anytime</li>
+                <li>✅ Revoke access anytime</li>
+            </ul>
+            
+            <h3>Third Parties</h3>
+            <ul>
+                <li>LinkedIn API (for posting)</li>
+                <li>OpenAI API (for AI responses)</li>
+                <li>No other third parties</li>
+            </ul>
+        </div>
+        
+        <div class="contact-info">
+            <h2>Contact Information</h2>
+            <p>For privacy-related questions or concerns:</p>
+            <ul>
+                <li><strong>Email:</strong> <a href="mailto:vsarankumar2003@gmail.com">vsarankumar2003@gmail.com</a></li>
+                <li><strong>GitHub:</strong> <a href="https://github.com/sarangen2//issues" target="_blank">Report an Issue</a></li>
+                <li><strong>Documentation:</strong> <a href="README.md">README.md</a></li>
+            </ul>
+        </div>
+        
+        <h2>Disclaimer</h2>
+        <p>This application is provided "as is" without warranties. This is a personal developer project, not a commercial service. You use it at your own risk.</p>
+        
+        <p><strong>I am not responsible for:</strong></p>
+        <ul>
+            <li>Data loss or corruption on your local system</li>
+            <li>Unauthorized access to your data</li>
+            <li>Misuse of the application</li>
+            <li>Violations of LinkedIn's or OpenAI's terms of service</li>
+            <li>Any damages or issues arising from use of this application</li>
+        </ul>
+        
+        <p><strong>You are responsible for:</strong></p>
+        <ul>
+            <li>Securing your own credentials and data</li>
+            <li>Complying with LinkedIn's and OpenAI's terms of service</li>
+            <li>Backing up your data</li>
+            <li>Ensuring appropriate use of the application</li>
+        </ul>
+        
+        <h2>Acknowledgment</h2>
+        <p>By using LinkedIn Comment Responder, you acknowledge that you have read and understood this Privacy Policy and agree to its terms.</p>
+        
+        <div class="footer">
+            <p>&copy; 2025 LinkedIn Comment Responder - Personal Developer Project</p>
+            <p>This is an open-source project. <a href="https://github.com/sarangen2/" target="_blank">View on GitHub</a></p>
+        </div>
+    </div>
+</body>
+</html>
