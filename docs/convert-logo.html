@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logo Converter - SVG to PNG</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #0077B5;
+            margin-bottom: 20px;
+        }
+        .preview {
+            display: flex;
+            gap: 20px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+        .preview-item {
+            text-align: center;
+        }
+        .preview-item img {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background: white;
+        }
+        .preview-item p {
+            margin-top: 10px;
+            color: #666;
+            font-size: 14px;
+        }
+        button {
+            background: #0077B5;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 10px 10px 0;
+        }
+        button:hover {
+            background: #005885;
+        }
+        canvas {
+            display: none;
+        }
+        .instructions {
+            background: #f0f8ff;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 20px 0;
+            border-left: 4px solid #0077B5;
+        }
+        .instructions h3 {
+            margin-top: 0;
+            color: #0077B5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎨 Logo Converter</h1>
+        <p>Convert the LinkedIn Comment Responder logo to PNG format</p>
+        
+        <div class="instructions">
+            <h3>Instructions:</h3>
+            <ol>
+                <li>Click the download button for the size you need</li>
+                <li>The PNG will be downloaded to your computer</li>
+                <li>Use it for GitHub, LinkedIn, or anywhere you need a PNG logo</li>
+            </ol>
+        </div>
+
+        <div class="preview">
+            <div class="preview-item">
+                <img src="logo-100.svg" width="100" height="100" alt="100x100 Logo">
+                <p>100x100px</p>
+                <button onclick="downloadPNG(100)">Download PNG</button>
+            </div>
+            
+            <div class="preview-item">
+                <img src="logo-simple.svg" width="200" height="200" alt="200x200 Logo">
+                <p>200x200px</p>
+                <button onclick="downloadPNG(200)">Download PNG</button>
+            </div>
+            
+            <div class="preview-item">
+                <img src="logo-simple.svg" width="512" height="512" alt="512x512 Logo">
+                <p>512x512px</p>
+                <button onclick="downloadPNG(512)">Download PNG</button>
+            </div>
+        </div>
+
+        <canvas id="canvas"></canvas>
+    </div>
+
+    <script>
+        async function downloadPNG(size) {
+            const canvas = document.getElementById('canvas');
+            const ctx = canvas.getContext('2d');
+            
+            // Set canvas size
+            canvas.width = size;
+            canvas.height = size;
+            
+            // Load SVG
+            const svgFile = size === 100 ? 'logo-100.svg' : 'logo-simple.svg';
+            const response = await fetch(svgFile);
+            const svgText = await response.text();
+            
+            // Create blob and object URL
+            const blob = new Blob([svgText], { type: 'image/svg+xml' });
+            const url = URL.createObjectURL(blob);
+            
+            // Load image
+            const img = new Image();
+            img.onload = function() {
+                // Draw to canvas
+                ctx.drawImage(img, 0, 0, size, size);
+                
+                // Convert to PNG and download
+                canvas.toBlob(function(blob) {
+                    const link = document.createElement('a');
+                    link.download = `linkedin-comment-responder-logo-${size}x${size}.png`;
+                    link.href = URL.createObjectURL(blob);
+                    link.click();
+                    
+                    // Cleanup
+                    URL.revokeObjectURL(link.href);
+                }, 'image/png');
+                
+                // Cleanup
+                URL.revokeObjectURL(url);
+            };
+            
+            img.src = url;
+        }
+    </script>
+</body>
+</html>

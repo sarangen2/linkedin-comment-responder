@@ -1,0 +1,52 @@
+<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <!-- Gradient Background -->
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0077B5;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00A0DC;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background with rounded corners -->
+  <rect width="100" height="100" rx="20" fill="url(#bgGrad)"/>
+  
+  <!-- Chat Bubble -->
+  <g transform="translate(50, 35)">
+    <!-- Bubble body -->
+    <rect x="-25" y="-12" width="50" height="24" rx="4" fill="white" opacity="0.95"/>
+    
+    <!-- Bubble tail -->
+    <path d="M -4 12 L 0 18 L 4 12 Z" fill="white" opacity="0.95"/>
+    
+    <!-- Typing dots -->
+    <circle cx="-10" cy="0" r="3" fill="#0077B5"/>
+    <circle cx="0" cy="0" r="3" fill="#0077B5"/>
+    <circle cx="10" cy="0" r="3" fill="#0077B5"/>
+  </g>
+  
+  <!-- Robot/AI Icon -->
+  <g transform="translate(50, 70)">
+    <!-- Robot head -->
+    <rect x="-12" y="-12" width="24" height="24" rx="3" fill="white" opacity="0.95"/>
+    
+    <!-- Eyes -->
+    <circle cx="-5" cy="-4" r="2.5" fill="#0077B5"/>
+    <circle cx="5" cy="-4" r="2.5" fill="#0077B5"/>
+    
+    <!-- Smile -->
+    <path d="M -6 3 Q 0 7 6 3" fill="none" stroke="#0077B5" stroke-width="1.5" stroke-linecap="round"/>
+    
+    <!-- Antenna -->
+    <line x1="0" y1="-12" x2="0" y2="-16" stroke="white" stroke-width="2" opacity="0.95"/>
+    <circle cx="0" cy="-17" r="2" fill="white" opacity="0.95"/>
+  </g>
+  
+  <!-- Sparkle effects -->
+  <g opacity="0.7">
+    <!-- Top left sparkle -->
+    <path d="M 15 15 L 16 17 L 17 15 L 19 16 L 17 17 L 19 18 L 17 19 L 16 17 L 15 19 L 13 18 L 15 17 L 13 16 Z" fill="white"/>
+    
+    <!-- Top right sparkle -->
+    <path d="M 85 15 L 86 17 L 87 15 L 89 16 L 87 17 L 89 18 L 87 19 L 86 17 L 85 19 L 83 18 L 85 17 L 83 16 Z" fill="white"/>
+  </g>
+</svg>
