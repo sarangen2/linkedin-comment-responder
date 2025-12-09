@@ -1,9 +1,13 @@
 # LinkedIn Comment Responder
 
+> **🤖 Agent-Built & Agent-Managed Workflow**  
+> This project is an agentic workflow system built entirely by AI agents and managed through agent-driven development practices. The architecture, code, tests, and documentation were created using Kiro's spec-driven development workflow with AI assistance.
+
 An intelligent, agentic workflow system that automates responses to LinkedIn post comments using AI-powered response generation. The system analyzes your original post content and incoming comments, then generates contextually-aware, comedic responses that maintain alignment with your post's theme and tone.
 
 ## 🎯 Features
 
+### Core Capabilities
 - **Automated Comment Monitoring**: Polls LinkedIn posts for new comments at configurable intervals
 - **AI-Powered Response Generation**: Uses LLM (GPT-4, Claude, etc.) to create contextually relevant, comedic responses
 - **Manual Approval Workflow**: Optional review and approval before posting responses
@@ -13,6 +17,13 @@ An intelligent, agentic workflow system that automates responses to LinkedIn pos
 - **Error Handling & Resilience**: Circuit breakers, retry logic, and graceful degradation
 - **REST API**: Full management API for controlling the workflow
 - **Multi-Environment Support**: Separate configurations for dev, staging, and production
+
+### Agent-Driven Development
+- **Spec-Driven Architecture**: Built using formal requirements and design specifications
+- **Property-Based Testing**: Correctness properties validated through automated testing
+- **AI-Generated Code**: Core components generated and refined by AI agents
+- **Automated Documentation**: Comprehensive docs maintained by agent workflows
+- **Continuous Agent Management**: Ongoing improvements through agent-assisted development
 
 ## 📋 Table of Contents
 
@@ -403,6 +414,22 @@ See [API_DOCUMENTATION.md](API_DOCUMENTATION.md) for detailed endpoint documenta
 - **Error Handler**: Centralized error handling and notifications
 - **Circuit Breaker**: Protects against cascading failures
 
+### Agent-Driven Architecture
+
+This project follows a **spec-driven development** methodology where AI agents:
+
+1. **Requirements Phase**: Agents analyze user needs and generate formal requirements using EARS (Easy Approach to Requirements Syntax)
+2. **Design Phase**: Agents create detailed architecture with correctness properties for validation
+3. **Implementation Phase**: Agents generate code following the design specifications
+4. **Testing Phase**: Agents write property-based tests to verify correctness properties
+5. **Documentation Phase**: Agents maintain comprehensive documentation aligned with implementation
+
+**Key Artifacts**:
+- [requirements.md](.kiro/specs/linkedin-comment-responder/requirements.md) - Formal requirements with acceptance criteria
+- [design.md](.kiro/specs/linkedin-comment-responder/design.md) - Architecture and correctness properties
+- [tasks.md](.kiro/specs/linkedin-comment-responder/tasks.md) - Implementation task breakdown
+- [linkedin-comment-responder.md](.kiro/steering/linkedin-comment-responder.md) - Agent steering guidelines
+
 ### Technology Stack
 
 - **Java 17**
@@ -412,6 +439,7 @@ See [API_DOCUMENTATION.md](API_DOCUMENTATION.md) for detailed endpoint documenta
 - **Jackson** - JSON processing
 - **jqwik 1.8.2** - Property-based testing
 - **Maven** - Build tool
+- **Kiro** - Agent-driven development platform
 
 See [README-LINKEDIN.md](README-LINKEDIN.md) for detailed project structure.
 
@@ -732,4 +760,32 @@ Complete documentation is available in the following files:
 
 ---
 
-**Built with ❤️ using Spring Boot and AI**
+## 🤖 About Agent-Driven Development
+
+This project showcases the power of **agent-driven development** using Kiro's spec-driven workflow:
+
+### Development Process
+
+1. **Requirements Gathering**: AI agents analyze the problem and generate formal requirements using EARS syntax with INCOSE quality rules
+2. **Design Creation**: Agents create comprehensive architecture with correctness properties that must be validated
+3. **Code Generation**: Agents implement the design following established patterns and best practices
+4. **Property-Based Testing**: Agents write tests that verify universal correctness properties across all inputs
+5. **Documentation**: Agents maintain synchronized documentation that evolves with the codebase
+
+### Benefits of Agent-Driven Development
+
+- **Consistency**: Formal specifications ensure consistent implementation
+- **Correctness**: Property-based testing validates behavior across all inputs
+- **Maintainability**: Clear architecture and documentation make changes easier
+- **Velocity**: Agents handle boilerplate and repetitive tasks
+- **Quality**: Automated testing and validation catch issues early
+
+### Learn More
+
+- Explore the [spec files](.kiro/specs/linkedin-comment-responder/) to see the formal requirements and design
+- Review the [steering document](.kiro/steering/linkedin-comment-responder.md) for agent guidelines
+- Check the [property-based tests](src/test/java/) to see correctness validation in action
+
+---
+
+**Built with ❤️ by AI Agents using Kiro, Spring Boot, and OpenAI**
