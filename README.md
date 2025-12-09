@@ -1,7 +1,17 @@
-# LinkedIn Comment Responder
+<div align="center">
+  <img src="https://sarangen2.github.io/linkedin-comment-responder/logo-simple.svg" alt="LinkedIn Comment Responder Logo" width="200"/>
+  
+  # LinkedIn Comment Responder
 
-> **🤖 Agent-Built & Agent-Managed Workflow**  
-> This project is an agentic workflow system built entirely by AI agents and managed through agent-driven development practices. The architecture, code, tests, and documentation were created using Kiro's spec-driven development workflow with AI assistance.
+  > **🤖 Agent-Built & Agent-Managed Workflow**  
+  > This project is an agentic workflow system built entirely by AI agents and managed through agent-driven development practices. The architecture, code, tests, and documentation were created using Kiro's spec-driven development workflow with AI assistance.
+
+  [![GitHub Pages](https://img.shields.io/badge/docs-GitHub%20Pages-blue)](https://sarangen2.github.io/linkedin-comment-responder/)
+  [![Java](https://img.shields.io/badge/Java-17-orange)](https://openjdk.org/)
+  [![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.2.0-green)](https://spring.io/projects/spring-boot)
+  [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+
+</div>
 
 An intelligent, agentic workflow system that automates responses to LinkedIn post comments using AI-powered response generation. The system analyzes your original post content and incoming comments, then generates contextually-aware, comedic responses that maintain alignment with your post's theme and tone.
 

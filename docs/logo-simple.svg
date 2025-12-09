@@ -1,0 +1,67 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <!-- Gradient Definition -->
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0077B5;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00A0DC;stop-opacity:1" />
+    </linearGradient>
+    
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  
+  <!-- Background Circle -->
+  <circle cx="256" cy="256" r="240" fill="url(#grad1)" filter="url(#shadow)"/>
+  
+  <!-- Chat Bubble (Main Element) -->
+  <g transform="translate(256, 200)">
+    <!-- Bubble body -->
+    <rect x="-120" y="-60" width="240" height="120" rx="20" 
+          fill="white" opacity="0.95"/>
+    
+    <!-- Bubble tail -->
+    <path d="M -20 60 L 0 90 L 20 60 Z" fill="white" opacity="0.95"/>
+    
+    <!-- Message dots (typing indicator) -->
+    <circle cx="-50" cy="0" r="15" fill="#0077B5"/>
+    <circle cx="0" cy="0" r="15" fill="#0077B5"/>
+    <circle cx="50" cy="0" r="15" fill="#0077B5"/>
+  </g>
+  
+  <!-- AI/Robot Icon -->
+  <g transform="translate(256, 360)">
+    <!-- Robot head -->
+    <rect x="-40" y="-40" width="80" height="80" rx="12" 
+          fill="white" opacity="0.95"/>
+    
+    <!-- Eyes -->
+    <circle cx="-15" cy="-10" r="8" fill="#0077B5"/>
+    <circle cx="15" cy="-10" r="8" fill="#0077B5"/>
+    
+    <!-- Smile/mouth -->
+    <path d="M -20 10 Q 0 25 20 10" 
+          fill="none" stroke="#0077B5" stroke-width="4" 
+          stroke-linecap="round"/>
+    
+    <!-- Antenna -->
+    <line x1="0" y1="-40" x2="0" y2="-55" 
+          stroke="white" stroke-width="4" opacity="0.95"/>
+    <circle cx="0" cy="-60" r="8" fill="white" opacity="0.95"/>
+  </g>
+  
+  <!-- Automation indicators (sparkles) -->
+  <g opacity="0.8">
+    <!-- Top left sparkle -->
+    <path d="M 100 120 L 105 130 L 110 120 L 120 125 L 110 130 L 120 135 L 110 140 L 105 130 L 100 140 L 90 135 L 100 130 L 90 125 Z" 
+          fill="white"/>
+    
+    <!-- Top right sparkle -->
+    <path d="M 412 120 L 417 130 L 422 120 L 432 125 L 422 130 L 432 135 L 422 140 L 417 130 L 412 140 L 402 135 L 412 130 L 402 125 Z" 
+          fill="white"/>
+    
+    <!-- Bottom sparkle -->
+    <path d="M 256 80 L 261 90 L 266 80 L 276 85 L 266 90 L 276 95 L 266 100 L 261 90 L 256 100 L 246 95 L 256 90 L 246 85 Z" 
+          fill="white"/>
+  </g>
+</svg>

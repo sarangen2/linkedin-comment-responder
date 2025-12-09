@@ -1,0 +1,55 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background Circle -->
+  <circle cx="100" cy="100" r="95" fill="#0077B5" opacity="0.1"/>
+  
+  <!-- Main Circle -->
+  <circle cx="100" cy="100" r="85" fill="none" stroke="#0077B5" stroke-width="3"/>
+  
+  <!-- LinkedIn "in" inspired design -->
+  <g transform="translate(40, 60)">
+    <!-- Chat Bubble -->
+    <path d="M 10 20 L 10 50 L 40 50 L 50 60 L 50 50 L 90 50 L 90 20 Z" 
+          fill="none" stroke="#0077B5" stroke-width="3" stroke-linejoin="round"/>
+    
+    <!-- AI Brain/Circuit pattern inside bubble -->
+    <circle cx="30" cy="35" r="3" fill="#0077B5"/>
+    <circle cx="50" cy="35" r="3" fill="#0077B5"/>
+    <circle cx="70" cy="35" r="3" fill="#0077B5"/>
+    
+    <!-- Connection lines (neural network style) -->
+    <line x1="30" y1="35" x2="50" y2="35" stroke="#0077B5" stroke-width="1.5"/>
+    <line x1="50" y1="35" x2="70" y2="35" stroke="#0077B5" stroke-width="1.5"/>
+  </g>
+  
+  <!-- Robot/AI indicator -->
+  <g transform="translate(100, 120)">
+    <!-- Small robot head -->
+    <rect x="-12" y="-12" width="24" height="24" rx="4" fill="#0077B5" opacity="0.2"/>
+    <rect x="-10" y="-10" width="20" height="20" rx="3" fill="none" stroke="#0077B5" stroke-width="2"/>
+    
+    <!-- Eyes -->
+    <circle cx="-4" cy="-3" r="2" fill="#0077B5"/>
+    <circle cx="4" cy="-3" r="2" fill="#0077B5"/>
+    
+    <!-- Antenna -->
+    <line x1="0" y1="-10" x2="0" y2="-16" stroke="#0077B5" stroke-width="2"/>
+    <circle cx="0" cy="-18" r="2" fill="#0077B5"/>
+  </g>
+  
+  <!-- Automation arrows (circular flow) -->
+  <g transform="translate(100, 100)">
+    <!-- Arrow path showing automation cycle -->
+    <path d="M 60 -30 A 40 40 0 0 1 60 30" 
+          fill="none" stroke="#0077B5" stroke-width="2" 
+          stroke-dasharray="5,3" opacity="0.6"/>
+    
+    <!-- Arrow head -->
+    <polygon points="60,30 55,25 65,25" fill="#0077B5" opacity="0.6"/>
+  </g>
+  
+  <!-- Text -->
+  <text x="100" y="185" font-family="Arial, sans-serif" font-size="14" 
+        font-weight="bold" fill="#0077B5" text-anchor="middle">
+    LinkedIn Comment Bot
+  </text>
+</svg>
