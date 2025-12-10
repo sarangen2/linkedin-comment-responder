@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinkedIn App Logo - PNG Generator</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 40px;
+            background: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        h1 {
+            color: #0077B5;
+            margin-bottom: 30px;
+        }
+        .logo-display {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        .logo-display img {
+            display: block;
+            margin: 0 auto;
+        }
+        .instructions {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: left;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .instructions h2 {
+            color: #0077B5;
+            margin-top: 0;
+        }
+        .instructions ol {
+            line-height: 1.8;
+        }
+        .instructions code {
+            background: #f5f5f5;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+        .size-options {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        .size-option {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .size-option h3 {
+            margin: 0 0 10px 0;
+            color: #0077B5;
+        }
+        button {
+            background: #0077B5;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 10px;
+        }
+        button:hover {
+            background: #005885;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>LinkedIn App Logo Generator</h1>
+        
+        <div class="logo-display">
+            <h2>Preview (300x300)</h2>
+            <img src="linkedin-app-logo.svg" width="300" height="300" alt="LinkedIn App Logo" id="logo">
+        </div>
+        
+        <div class="size-options">
+            <div class="size-option">
+                <h3>100x100</h3>
+                <button onclick="downloadPNG(100)">Download PNG</button>
+            </div>
+            <div class="size-option">
+                <h3>200x200</h3>
+                <button onclick="downloadPNG(200)">Download PNG</button>
+            </div>
+            <div class="size-option">
+                <h3>300x300</h3>
+                <button onclick="downloadPNG(300)">Download PNG</button>
+            </div>
+        </div>
+        
+        <div class="instructions">
+            <h2>How to Generate PNG for LinkedIn</h2>
+            <ol>
+                <li>Click one of the "Download PNG" buttons above (300x300 recommended)</li>
+                <li>The PNG will be downloaded to your Downloads folder</li>
+                <li>Go to <a href="https://www.linkedin.com/developers/apps" target="_blank">LinkedIn Developers</a></li>
+                <li>Select your app</li>
+                <li>Click <strong>Settings</strong> tab</li>
+                <li>Scroll to <strong>App Logo</strong> section</li>
+                <li>Click <strong>Upload Logo</strong></li>
+                <li>Select the downloaded PNG file</li>
+                <li>Click <strong>Save</strong></li>
+            </ol>
+            
+            <h2>Alternative Method: Screenshot</h2>
+            <ol>
+                <li>Right-click on the logo above</li>
+                <li>Select "Save Image As..." or "Copy Image"</li>
+                <li>Save as PNG format</li>
+                <li>Upload to LinkedIn Developer Portal</li>
+            </ol>
+            
+            <h2>Requirements</h2>
+            <ul>
+                <li>✅ Format: PNG or JPG</li>
+                <li>✅ Minimum Size: 100x100 pixels</li>
+                <li>✅ Recommended: 300x300 pixels</li>
+                <li>✅ Aspect Ratio: Square (1:1)</li>
+                <li>✅ File Size: Under 5MB</li>
+            </ul>
+        </div>
+    </div>
+    
+    <script>
+        function downloadPNG(size) {
+            // Create a canvas
+            const canvas = document.createElement('canvas');
+            canvas.width = size;
+            canvas.height = size;
+            const ctx = canvas.getContext('2d');
+            
+            // Load the SVG
+            const img = new Image();
+            const svgBlob = new Blob([document.getElementById('logo').outerHTML], {type: 'image/svg+xml'});
+            const url = URL.createObjectURL(svgBlob);
+            
+            img.onload = function() {
+                // Draw the image on canvas
+                ctx.drawImage(img, 0, 0, size, size);
+                
+                // Convert to PNG and download
+                canvas.toBlob(function(blob) {
+                    const link = document.createElement('a');
+                    link.download = `linkedin-app-logo-${size}x${size}.png`;
+                    link.href = URL.createObjectURL(blob);
+                    link.click();
+                    URL.revokeObjectURL(url);
+                }, 'image/png');
+            };
+            
+            img.src = 'linkedin-app-logo.svg';
+        }
+    </script>
+</body>
+</html>

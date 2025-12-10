@@ -4,10 +4,16 @@
 
 The Management API provides REST endpoints for controlling and monitoring the LinkedIn Comment Responder workflow system.
 
-## Base URL
+## Base URLs
 
+### Management API
 ```
 http://localhost:8080/api/management
+```
+
+### Profile Test API
+```
+http://localhost:8080/api/test
 ```
 
 ## Interactive API Documentation
@@ -24,9 +30,108 @@ The OpenAPI specification is available at:
 http://localhost:8080/api-docs
 ```
 
-## Endpoints
+## Profile Test Endpoints
 
-### 1. Start Polling
+### 1. Test LinkedIn Profile
+
+**GET** `/api/test/profile`
+
+Tests LinkedIn API connectivity and retrieves your basic profile information using the configured access token.
+
+**Response:**
+```json
+{
+  "success": true,
+  "message": "Profile retrieved successfully",
+  "data": {
+    "id": "your-linkedin-id",
+    "firstName": "Your",
+    "lastName": "Name",
+    "profilePicture": "profile-image-url",
+    "apiTestStatus": "SUCCESS",
+    "tokenValid": true,
+    "timestamp": 1703875200000
+  }
+}
+```
+
+**Status Codes:**
+- `200 OK` - Profile retrieved successfully
+- `401 Unauthorized` - Invalid or expired access token
+- `403 Forbidden` - Insufficient API permissions
+
+**Example:**
+```bash
+curl http://localhost:8080/api/test/profile
+```
+
+### 2. Test with Custom Token
+
+**POST** `/api/test/profile/custom`
+
+Tests LinkedIn API connectivity using a custom access token (useful for testing different tokens).
+
+**Request Body:**
+```json
+{
+  "accessToken": "your-custom-linkedin-access-token"
+}
+```
+
+**Response:**
+```json
+{
+  "success": true,
+  "message": "Profile retrieved with custom token",
+  "data": {
+    "id": "your-linkedin-id",
+    "firstName": "Your",
+    "lastName": "Name",
+    "apiTestStatus": "SUCCESS",
+    "tokenValid": true,
+    "tokenSource": "CUSTOM",
+    "timestamp": 1703875200000
+  }
+}
+```
+
+**Example:**
+```bash
+curl -X POST http://localhost:8080/api/test/profile/custom \
+  -H "Content-Type: application/json" \
+  -d '{"accessToken": "your-token-here"}'
+```
+
+### 3. Check Configuration Status
+
+**GET** `/api/test/config`
+
+Returns the current LinkedIn API configuration status without exposing sensitive data.
+
+**Response:**
+```json
+{
+  "success": true,
+  "message": "LinkedIn API is configured",
+  "data": {
+    "hasAccessToken": true,
+    "hasClientId": true,
+    "accessTokenLength": 150,
+    "accessTokenPreview": "AQVmXyZ123...",
+    "apiBaseUrl": "https://api.linkedin.com/v2",
+    "timestamp": 1703875200000
+  }
+}
+```
+
+**Example:**
+```bash
+curl http://localhost:8080/api/test/config
+```
+
+## Management Endpoints
+
+### 4. Start Polling
 
 **POST** `/polling/start`
 
