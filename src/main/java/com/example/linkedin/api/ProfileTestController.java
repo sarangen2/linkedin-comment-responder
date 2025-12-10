@@ -3,6 +3,7 @@ package com.example.linkedin.api;
 import com.example.linkedin.api.dto.ApiResponse;
 import com.example.linkedin.client.LinkedInApiClient;
 import com.example.linkedin.model.LinkedInCredentials;
+import com.example.linkedin.oauth.LinkedInOAuthService;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.v3.oas.annotations.Operation;
@@ -35,9 +36,10 @@ public class ProfileTestController {
     
     private final WebClient webClient;
     private final ObjectMapper objectMapper;
+    private final LinkedInOAuthService oauthService;
     
     @Value("${linkedin.api.access-token:}")
-    private String accessToken;
+    private String configuredAccessToken;
     
     @Value("${linkedin.api.client-id:}")
     private String clientId;
@@ -45,11 +47,12 @@ public class ProfileTestController {
     @Value("${linkedin.api.client-secret:}")
     private String clientSecret;
 
-    public ProfileTestController() {
+    public ProfileTestController(LinkedInOAuthService oauthService) {
         this.webClient = WebClient.builder()
                 .baseUrl("https://api.linkedin.com/v2")
                 .build();
         this.objectMapper = new ObjectMapper();
+        this.oauthService = oauthService;
     }
 
     /**
@@ -80,11 +83,24 @@ public class ProfileTestController {
     public ResponseEntity<ApiResponse<Map<String, Object>>> testProfile() {
         logger.info("Testing LinkedIn profile access");
         
+        // Try to get access token from OAuth service first, then fall back to configured token
+        String accessToken = oauthService.getValidAccessToken();
         if (accessToken == null || accessToken.isBlank()) {
-            logger.error("No LinkedIn access token configured");
+            accessToken = configuredAccessToken;
+        }
+        
+        if (accessToken == null || accessToken.isBlank()) {
+            logger.error("No LinkedIn access token available");
+            
+            Map<String, Object> errorInfo = new HashMap<>();
+            errorInfo.put("hasOAuthToken", oauthService.hasValidToken());
+            errorInfo.put("hasConfiguredToken", configuredAccessToken != null && !configuredAccessToken.isBlank());
+            errorInfo.put("authorizationUrl", oauthService.getAuthorizationUrl());
+            errorInfo.put("instructions", "Visit the authorization URL to authenticate with LinkedIn");
+            
             return ResponseEntity
                     .status(HttpStatus.UNAUTHORIZED)
-                    .body(ApiResponse.error("No access token configured", "MISSING_TOKEN"));
+                    .body(ApiResponse.error("No access token available - OAuth required", "MISSING_TOKEN", errorInfo));
         }
         
         try {
@@ -126,6 +142,7 @@ public class ProfileTestController {
             // Add API test metadata
             profileInfo.put("apiTestStatus", "SUCCESS");
             profileInfo.put("tokenValid", true);
+            profileInfo.put("tokenSource", accessToken.equals(configuredAccessToken) ? "CONFIGURED" : "OAUTH");
             profileInfo.put("timestamp", System.currentTimeMillis());
             
             logger.info("Successfully retrieved profile for user: {} {}", 
@@ -289,13 +306,22 @@ public class ProfileTestController {
         
         Map<String, Object> configStatus = new HashMap<>();
         
+        // Check OAuth token status
+        String oauthToken = oauthService.getValidAccessToken();
+        Map<String, Object> oauthStatus = oauthService.getTokenStatus();
+        
         // Check configuration without exposing sensitive data
-        configStatus.put("hasAccessToken", accessToken != null && !accessToken.isBlank());
+        configStatus.put("hasOAuthToken", oauthToken != null && !oauthToken.isBlank());
+        configStatus.put("hasConfiguredToken", configuredAccessToken != null && !configuredAccessToken.isBlank());
         configStatus.put("hasClientId", clientId != null && !clientId.isBlank());
         configStatus.put("hasClientSecret", clientSecret != null && !clientSecret.isBlank());
-        configStatus.put("accessTokenLength", accessToken != null ? accessToken.length() : 0);
-        configStatus.put("accessTokenPreview", accessToken != null && accessToken.length() > 10 
-                ? accessToken.substring(0, 10) + "..." : "Not configured");
+        
+        configStatus.put("oauthTokenStatus", oauthStatus);
+        
+        if (configuredAccessToken != null && configuredAccessToken.length() > 10) {
+            configStatus.put("configuredTokenPreview", configuredAccessToken.substring(0, 10) + "...");
+        }
+        
         configStatus.put("clientIdPreview", clientId != null && clientId.length() > 10 
                 ? clientId.substring(0, 10) + "..." : "Not configured");
         
@@ -303,8 +329,9 @@ public class ProfileTestController {
         configStatus.put("apiBaseUrl", "https://api.linkedin.com/v2");
         configStatus.put("timestamp", System.currentTimeMillis());
         
-        boolean isConfigured = (accessToken != null && !accessToken.isBlank());
-        String message = isConfigured ? "LinkedIn API is configured" : "LinkedIn API is not configured";
+        boolean hasAnyToken = (oauthToken != null && !oauthToken.isBlank()) || 
+                             (configuredAccessToken != null && !configuredAccessToken.isBlank());
+        String message = hasAnyToken ? "LinkedIn API is configured" : "LinkedIn API is not configured - OAuth required";
         
         return ResponseEntity.ok(ApiResponse.success(message, configStatus));
     }

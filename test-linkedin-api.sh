@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "=========================================="
-echo "LinkedIn API Test Script"
+echo "LinkedIn OAuth API Test Script"
 echo "=========================================="
 echo ""
 
@@ -18,16 +18,9 @@ if [ -z "$LINKEDIN_CLIENT_SECRET" ]; then
     exit 1
 fi
 
-if [ -z "$LINKEDIN_ACCESS_TOKEN" ]; then
-    echo "❌ LINKEDIN_ACCESS_TOKEN is not set"
-    echo "Please set it with: export LINKEDIN_ACCESS_TOKEN='your-access-token'"
-    exit 1
-fi
-
 echo "✅ LinkedIn credentials are set:"
 echo "   Client ID: ${LINKEDIN_CLIENT_ID:0:10}..."
 echo "   Client Secret: ${LINKEDIN_CLIENT_SECRET:0:10}..."
-echo "   Access Token: ${LINKEDIN_ACCESS_TOKEN:0:10}..."
 echo ""
 
 echo "Starting Spring Boot application..."
@@ -73,24 +66,49 @@ curl -s http://localhost:8080/api/test/config | jq '.' 2>/dev/null || curl -s ht
 echo ""
 echo ""
 
-# Test 2: Profile Test
-echo "2. Testing LinkedIn profile..."
-echo "GET /api/test/profile"
+# Test 2: OAuth Token Status
+echo "2. Testing OAuth token status..."
+echo "GET /auth/linkedin/status"
 echo ""
-curl -s http://localhost:8080/api/test/profile | jq '.' 2>/dev/null || curl -s http://localhost:8080/api/test/profile
+curl -s http://localhost:8080/auth/linkedin/status | jq '.' 2>/dev/null || curl -s http://localhost:8080/auth/linkedin/status
 echo ""
 echo ""
 
-# Test 3: Custom Token Test (using the same token)
-echo "3. Testing with custom token..."
-echo "POST /api/test/profile/custom"
+# Test 3: Profile Test (will use OAuth token if available)
+echo "3. Testing LinkedIn profile..."
+echo "GET /api/test/profile"
 echo ""
-curl -s -X POST http://localhost:8080/api/test/profile/custom \
-  -H "Content-Type: application/json" \
-  -d "{\"accessToken\": \"$LINKEDIN_ACCESS_TOKEN\"}" | jq '.' 2>/dev/null || \
-curl -s -X POST http://localhost:8080/api/test/profile/custom \
-  -H "Content-Type: application/json" \
-  -d "{\"accessToken\": \"$LINKEDIN_ACCESS_TOKEN\"}"
+PROFILE_RESPONSE=$(curl -s http://localhost:8080/api/test/profile)
+echo "$PROFILE_RESPONSE" | jq '.' 2>/dev/null || echo "$PROFILE_RESPONSE"
+
+# Check if OAuth is required
+if echo "$PROFILE_RESPONSE" | grep -q "OAuth required"; then
+    echo ""
+    echo "🔐 OAuth authentication required!"
+    echo ""
+    echo "Getting authorization URL..."
+    AUTH_RESPONSE=$(curl -s http://localhost:8080/auth/linkedin/authorize)
+    AUTH_URL=$(echo "$AUTH_RESPONSE" | jq -r '.data.authorizationUrl' 2>/dev/null)
+    
+    if [ "$AUTH_URL" != "null" ] && [ -n "$AUTH_URL" ]; then
+        echo ""
+        echo "=========================================="
+        echo "🌐 OAUTH AUTHENTICATION REQUIRED"
+        echo "=========================================="
+        echo ""
+        echo "Please visit this URL in your browser to authenticate:"
+        echo ""
+        echo "$AUTH_URL"
+        echo ""
+        echo "After authentication, run this script again to test your profile."
+        echo ""
+        echo "Or visit: http://localhost:8080/auth/linkedin/authorize"
+        echo ""
+    else
+        echo "❌ Failed to get authorization URL"
+    fi
+fi
+
 echo ""
 echo ""
 
@@ -102,9 +120,16 @@ echo "Stopping application..."
 kill $APP_PID 2>/dev/null
 wait $APP_PID 2>/dev/null
 
-echo "✅ LinkedIn API test completed!"
+echo "✅ LinkedIn OAuth API test completed!"
 echo ""
-echo "Check the results above to see if your LinkedIn API integration is working."
-echo "If you see profile information, your setup is correct!"
+echo "Results summary:"
+echo "- If you see profile information above, your OAuth setup is working!"
+echo "- If OAuth is required, visit the authorization URL shown above"
+echo "- After OAuth, your token will be cached for 2 months"
 echo ""
 echo "Application logs are saved in: app.log"
+echo ""
+echo "Next steps:"
+echo "1. Complete OAuth if required"
+echo "2. Test profile access: curl http://localhost:8080/api/test/profile"
+echo "3. Start using the LinkedIn Comment Responder!"
