@@ -41,6 +41,9 @@ public class ProfileTestController {
     
     @Value("${linkedin.api.client-id:}")
     private String clientId;
+    
+    @Value("${linkedin.api.client-secret:}")
+    private String clientSecret;
 
     public ProfileTestController() {
         this.webClient = WebClient.builder()
@@ -289,9 +292,12 @@ public class ProfileTestController {
         // Check configuration without exposing sensitive data
         configStatus.put("hasAccessToken", accessToken != null && !accessToken.isBlank());
         configStatus.put("hasClientId", clientId != null && !clientId.isBlank());
+        configStatus.put("hasClientSecret", clientSecret != null && !clientSecret.isBlank());
         configStatus.put("accessTokenLength", accessToken != null ? accessToken.length() : 0);
         configStatus.put("accessTokenPreview", accessToken != null && accessToken.length() > 10 
                 ? accessToken.substring(0, 10) + "..." : "Not configured");
+        configStatus.put("clientIdPreview", clientId != null && clientId.length() > 10 
+                ? clientId.substring(0, 10) + "..." : "Not configured");
         
         // Environment info
         configStatus.put("apiBaseUrl", "https://api.linkedin.com/v2");
